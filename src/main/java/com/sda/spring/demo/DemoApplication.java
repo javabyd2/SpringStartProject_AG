@@ -16,7 +16,9 @@ public class DemoApplication implements CommandLineRunner {
 
     @Autowired
     public BookRepository bookRepository;
+    @Autowired
     public AuthorRepository authorRepository;
+    @Autowired
     public CategoryRepository categoryRepository;
 
     public static void main(String[] args) {
@@ -37,7 +39,6 @@ public class DemoApplication implements CommandLineRunner {
         authorRepository.save(author1);
 
         Book book0 = new Book("Cztery Łapki");
-        book0.setAuthors();
         bookRepository.save(book0);
 
 

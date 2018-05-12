@@ -11,9 +11,9 @@ public class Category {
     @Column(unique = true, name = "category_id")
     private int id;
     private String name;
-    @OneToMany(mappedBy = "bookCategory", cascade = CascadeType.ALL)
-    @JoinColumn(name = "book_id")
-    private Book book;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private Set<Book> book;
 
     public Category() {
     }
@@ -38,11 +38,11 @@ public class Category {
         this.name = name;
     }
 
-    public Book getBook() {
+    public Set<Book> getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(Set<Book> book) {
         this.book = book;
     }
 }
