@@ -10,6 +10,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, name = "category_id")
     private int id;
+    @Column(unique = true)
     private String name;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
