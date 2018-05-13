@@ -38,11 +38,8 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Book> getBook() {
-        return book;
-    }
-
     public void setBook(Set<Book> book) {
         this.book = book;
     }
+
 }

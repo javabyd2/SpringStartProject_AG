@@ -1,7 +1,6 @@
 package com.sda.spring.demo.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,7 +13,7 @@ public class Author {
     private String name;
     private String lastname;
 
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL)
     private Set<Book> books;
 
     public Author() {
@@ -49,12 +48,10 @@ public class Author {
         this.lastname = lastname;
     }
 
-    public Set<Book> getBooks() {
-        return books;
-    }
-
     public void setBooks(Set<Book> books) {
         this.books = books;
     }
+
+
 
 }

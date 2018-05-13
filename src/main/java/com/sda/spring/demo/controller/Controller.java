@@ -1,9 +1,12 @@
 package com.sda.spring.demo.controller;
 
+import com.sda.spring.demo.model.Author;
 import com.sda.spring.demo.model.Book;
-import com.sda.spring.demo.repository.BookRepository;
+import com.sda.spring.demo.model.Category;
+import com.sda.spring.demo.service.AuthorService;
+import com.sda.spring.demo.service.BookService;
+import com.sda.spring.demo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +18,11 @@ import java.util.List;
 public class Controller {
 
     @Autowired
-    private BookRepository bookRepository;
+    private BookService bookService;
+    @Autowired
+    private AuthorService authorService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hello() {
@@ -34,8 +41,18 @@ public class Controller {
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public List<Book> schowBookList() {
-        return bookRepository.findAll();
-
+        return bookService.getBook();
     }
+
+    @RequestMapping(value = "/authors", method = RequestMethod.GET)
+    public List<Author> schowAuthorList() {
+        return authorService.getAuthors();
+    }
+
+    @RequestMapping(value = "/categories", method = RequestMethod.GET)
+    public List<Category> schowCategoryList() {
+        return categoryService.getCategories();
+    }
+
 
 }

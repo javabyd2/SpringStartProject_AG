@@ -1,9 +1,6 @@
 package com.sda.spring.demo.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,10 +21,16 @@ public class Book {
     )
     private Set<Author> authors;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Category category;
 
     public Book() {
+    }
+
+    public Book(String name, Category category, Set<Author> authors) {
+        this.title = name;
+        this.category = category;
+        this.authors = authors;
     }
 
     public Book(String title) {
