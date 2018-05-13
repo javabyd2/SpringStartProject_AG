@@ -13,7 +13,7 @@ public class Book {
     private String title;
     private Long isbn;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.REFRESH)
     @JoinTable(joinColumns =
     @JoinColumn(name = "book_id"),
             inverseJoinColumns =
@@ -21,7 +21,7 @@ public class Book {
     )
     private Set<Author> authors;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     private Category category;
 
     public Book() {

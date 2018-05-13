@@ -34,17 +34,17 @@ public class DemoApplication implements CommandLineRunner {
         // Book book = bookRepository.findByTitle("Przygoda");
 
 
-        Category category0 = new Category("Przygodowa");
-        categoryRepository.save(category0);
-        Category category1 = new Category("Historyczna");
-        categoryRepository.save(category1);
-
-        Author author0 = new Author("Jan", "Kowalski");
-        authorRepository.save(author0);
-        Author author1 = new Author("Zbigniew", "Boniek");
-        authorRepository.save(author1);
-        Author author2 = new Author("Edmund", "Ormanowski");
-        authorRepository.save(author2);
+//        Category category0 = new Category("Przygodowa");
+//        categoryRepository.save(category0);
+//        Category category1 = new Category("Historyczna");
+//        categoryRepository.save(category1);
+//
+//        Author author0 = new Author("Jan", "Kowalski");
+//        authorRepository.save(author0);
+//        Author author1 = new Author("Zbigniew", "Boniek");
+//        authorRepository.save(author1);
+//        Author author2 = new Author("Edmund", "Ormanowski");
+//        authorRepository.save(author2);
 /*
         Set<Author> authors = new HashSet<>();
         authors.add(new Author("Jan", "Kowalski"));
