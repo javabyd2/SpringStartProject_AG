@@ -13,7 +13,7 @@ public class Author {
     private String name;
     private String lastname;
 
-    @ManyToMany(mappedBy = "authors", cascade = CascadeType.REFRESH)
+    @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL)
     private Set<Book> books;
 
     public Author() {

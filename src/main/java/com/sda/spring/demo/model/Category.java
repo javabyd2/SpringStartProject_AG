@@ -13,7 +13,7 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Book> book;
 
     public Category() {
