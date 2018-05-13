@@ -7,13 +7,11 @@ import com.sda.spring.demo.service.AuthorService;
 import com.sda.spring.demo.service.BookService;
 import com.sda.spring.demo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class Controller {
@@ -58,6 +56,27 @@ public class Controller {
         return categoryService.getCategories();
     }
 
+
+    // wyświetlanie ksiązek, autorów, itd. po ID
+
+    @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
+    public Optional<Book> showBookById(@PathVariable Long id) {
+        return bookService.getBookById(id);
+    }
+
+    @RequestMapping(value = "/authors/{id}", method = RequestMethod.GET)
+    public Optional<Author> showAuthorById(@PathVariable Long id) {
+        return authorService.getAuthorsById(id);
+    }
+
+    @RequestMapping(value = "/categories/{id}", method = RequestMethod.GET)
+    public Optional<Category> showCategoryById(@PathVariable Long id) {
+        return categoryService.getCategoriesById(id);
+    }
+
+
+
+
     /*
         RequestMethod.POST
      */
@@ -75,5 +94,7 @@ public class Controller {
     public Book addBook(@RequestBody Book book) {
         return bookService.save(book);
     }
+
+
 
 }
