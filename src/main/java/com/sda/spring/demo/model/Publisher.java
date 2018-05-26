@@ -1,27 +1,21 @@
 package com.sda.spring.demo.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Category {
+public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(unique = true, name = "category_id")
     private Long id;
-    @Column(unique = true)
     private String name;
+    private String address;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private Set<Book> books;
+    @OneToMany(mappedBy = "publisher")
+    private Set<Book> book;
 
-    public Category() {
-    }
-
-    public Category(String name) {
-        this.name = name;
+    public Publisher() {
     }
 
     public Long getId() {
@@ -40,7 +34,15 @@ public class Category {
         this.name = name;
     }
 
-    public void setBooks(Set<Book> books) {
-        this.books = books;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setBook(Set<Book> book) {
+        this.book = book;
     }
 }

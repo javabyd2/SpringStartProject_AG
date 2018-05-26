@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista autorów</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Lista AUTORÓW</h5>
+                <p class="card-text">Oto dokładna lista autorów znajdujących się w naszej bazie danych...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+
+    <tr>
+        <thead>
+        <th scope="col">Imię</th>
+        <th scope="col">Nazwisko</th>
+        </thead>
+    </tr>
+    <tbody>
+    <tr th:each="author : ${authorsList}">
+        <td th:text="${author.getName()}"></td>
+        <td th:text="${author.getLastname()}"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+
+</body>
+</html>

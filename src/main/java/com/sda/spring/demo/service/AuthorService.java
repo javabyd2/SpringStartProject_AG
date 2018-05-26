@@ -11,22 +11,18 @@ import java.util.Optional;
 @Service
 public class AuthorService {
 
-    @Autowired
     private AuthorRepository authorRepository;
 
+    @Autowired
+    public AuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
+
     public List<Author> getAuthors() {
-        /*
-            dodatkowa logika
-         */
         return authorRepository.findAll();
     }
 
-    public Author save(Author author) {
-        return authorRepository.save(author);
-    }
-
-
-    public Optional<Author> getAuthorsById(Long id) {
+    public Optional<Author> getAuthorById(Long id) {
         return authorRepository.findById(id);
     }
 }

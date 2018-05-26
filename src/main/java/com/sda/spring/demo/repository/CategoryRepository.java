@@ -3,6 +3,7 @@ package com.sda.spring.demo.repository;
 import com.sda.spring.demo.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CategoryRepository extends JpaRepository<Category, Long> {
-    public Category findByName(String title);
+public interface CategoryRepository
+        extends JpaRepository<Category, Long> {
+    public Category findByName(String name);
 }

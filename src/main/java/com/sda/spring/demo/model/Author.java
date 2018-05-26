@@ -1,5 +1,6 @@
 package com.sda.spring.demo.model;
 
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -51,7 +52,4 @@ public class Author {
     public void setBooks(Set<Book> books) {
         this.books = books;
     }
-
-
-
 }

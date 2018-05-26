@@ -1,15 +1,18 @@
 package com.sda.spring.demo.controller;
 
-import com.sda.spring.demo.model.Author;
+import com.sda.spring.demo.dto.UserPropDTO;
 import com.sda.spring.demo.model.Book;
+import com.sda.spring.demo.model.Author;
 import com.sda.spring.demo.model.Category;
 import com.sda.spring.demo.service.AuthorService;
 import com.sda.spring.demo.service.BookService;
 import com.sda.spring.demo.service.CategoryService;
+import com.sda.spring.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,83 +21,71 @@ public class Controller {
 
     @Autowired
     private BookService bookService;
-    @Autowired
-    private AuthorService authorService;
+
     @Autowired
     private CategoryService categoryService;
 
-    /*
-        RequestMethod.GET
-     */
+    @Autowired
+    private AuthorService authorService;
+
+    @Autowired
+    private UserService userService;
+
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String hello() {
-        return "Hello Word!";
+        return "Hello word";
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<String> stringList() {
-        List<String> stringList = new ArrayList<>();
-        stringList.add("Adrian");
-        stringList.add("Roger");
-        stringList.add("Dawid");
-        stringList.add("Giełzak");
-        return stringList;
+    @RequestMapping(value = "/booksRest", method = RequestMethod.GET)
+    public List<Book> showBookList() {
+        return bookService.getBooks();
     }
 
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
-    public List<Book> schowBookList() {
-        return bookService.getBook();
-    }
-
-    @RequestMapping(value = "/authors", method = RequestMethod.GET)
-    public List<Author> schowAuthorList() {
-        return authorService.getAuthors();
-    }
-
-    @RequestMapping(value = "/categories", method = RequestMethod.GET)
-    public List<Category> schowCategoryList() {
-        return categoryService.getCategories();
-    }
-
-
-    // wyświetlanie ksiązek, autorów, itd. po ID
-
-    @RequestMapping(value = "/books/{id}", method = RequestMethod.GET)
-    public Optional<Book> showBookById(@PathVariable Long id) {
-        return bookService.getBookById(id);
-    }
-
-    @RequestMapping(value = "/authors/{id}", method = RequestMethod.GET)
-    public Optional<Author> showAuthorById(@PathVariable Long id) {
-        return authorService.getAuthorsById(id);
-    }
-
-    @RequestMapping(value = "/categories/{id}", method = RequestMethod.GET)
-    public Optional<Category> showCategoryById(@PathVariable Long id) {
-        return categoryService.getCategoriesById(id);
-    }
-
-
-
-
-    /*
-        RequestMethod.POST
-     */
-    @RequestMapping(value = "/categories", method = RequestMethod.POST)
-    public Category addCategory(@RequestBody Category category) {
+    @RequestMapping(value = "/category", method = RequestMethod.POST)
+    public Category addCategory(
+            @RequestBody Category category
+    ) {
         return categoryService.save(category);
     }
 
-    @RequestMapping(value = "/authors", method = RequestMethod.POST)
-    public Author addAuthor(@RequestBody Author author) {
-        return authorService.save(author);
-    }
-
-    @RequestMapping(value = "/books", method = RequestMethod.POST)
-    public Book addBook(@RequestBody Book book) {
+    @RequestMapping(value = "/book", method = RequestMethod.POST)
+    public Book addBook(
+            @RequestBody Book book
+    ) {
         return bookService.save(book);
     }
 
+    @RequestMapping(value = "/book/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(bookService.getBookById(id));
+    }
 
+    @RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
+    public Optional<Category> getBookCategoryById(@PathVariable Long id) {
+        return categoryService.getCategoryById(id);
+    }
+
+    @RequestMapping(value = "/author/{id}", method = RequestMethod.GET)
+    public Optional<Author> getBookAuthorById(@PathVariable Long id) {
+        return authorService.getAuthorById(id);
+    }
+
+    @RequestMapping(value = "/categoriesRest", method = RequestMethod.GET)
+    public List<Category> showCategories() {
+        return categoryService.bookCategories();
+    }
+
+    @RequestMapping(value = "/authorsRest", method = RequestMethod.GET)
+    public List<Author> showAuthors() {
+        return authorService.getAuthors();
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public List<UserPropDTO> showUserProp() {
+        return userService.getUsers();
+    }
 
 }

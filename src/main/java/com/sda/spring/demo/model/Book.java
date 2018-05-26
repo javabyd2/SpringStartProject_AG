@@ -24,17 +24,40 @@ public class Book {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Category category;
 
-    public Book() {
-    }
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Publisher publisher;
 
-    public Book(String name, Category category, Set<Author> authors) {
-        this.title = name;
+
+    public Book(String title, Category category, Set<Author> authors) {
+        this.title = title;
         this.category = category;
         this.authors = authors;
     }
 
-    public Book(String title) {
-        this.title = title;
+    public Book () {}
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Category getBookCategory() {
+        return category;
+    }
+
+    public void setBookCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<Author> getBookAuthors() {
+        return authors;
+    }
+
+    public void setBookAuthors(Set<Author> authors) {
+        this.authors = authors;
     }
 
     public Long getId() {
@@ -53,28 +76,4 @@ public class Book {
         this.title = title;
     }
 
-    public Long getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(Long isbn) {
-        this.isbn = isbn;
-    }
-
-
-    public Set<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }

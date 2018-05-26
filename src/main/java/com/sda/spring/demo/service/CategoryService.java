@@ -11,18 +11,14 @@ import java.util.Optional;
 @Service
 public class CategoryService {
 
-    // @Autowired   --  wstrzykiwanie za pomocą pola od niedawna niezalecane
     private CategoryRepository categoryRepository;
 
-    @Autowired  //  -- wstrzykiwanie za pomocą konstruktora
+    @Autowired
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> getCategories() {
-        /*
-            dodatkowa logika
-         */
+    public List<Category> bookCategories(){
         return categoryRepository.findAll();
     }
 
@@ -30,7 +26,11 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public Optional<Category> getCategoriesById(Long id) {
+    public List<Category> getCategory() {
+        return categoryRepository.findAll();
+    }
+
+    public Optional<Category> getCategoryById(Long id) {
         return categoryRepository.findById(id);
     }
 }
