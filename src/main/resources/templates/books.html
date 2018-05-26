@@ -27,6 +27,7 @@
         <thead>
         <th scope="col">Tytuł</th>
         <th scope="col">Autorzy</th>
+        <th scope="col">Kategoria</th>
         <th scope="col">Wydawca</th>
         </thead>
     </tr>
@@ -39,7 +40,9 @@
                 <p th:text="${author.getName()} + ' ' + ${author.getLastname()}"></br></p>
             </div>
         </td>
+        <td th:text="${book.getBookCategory().getName()}"></td>
         <td th:text="${book.getPublisher().getName()}"></td>
+
     </tr>
     </tbody>
 
